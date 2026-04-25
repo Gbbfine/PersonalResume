@@ -9,16 +9,46 @@ services:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:-1006}
       MYSQL_DATABASE: personal_resume
     ports:
-      - "3306:3306"
+      - "13306:3306"
     volumes:
       - mysql_data:/var/lib/mysql
       - ./database/schema.sql:/docker-entrypoint-initdb.d/01-schema.sql:ro
       - ./database/seed.sql:/docker-entrypoint-initdb.d/02-seed.sql:ro
+      - ./database/fix_profile_is_active.sql:/docker-entrypoint-initdb.d/03-fix-profile-is-active.sql:ro
+      - ./database/update_profile_asset_urls.sql:/docker-entrypoint-initdb.d/04-update-profile-asset-urls.sql:ro
     healthcheck:
       test: ["CMD-SHELL", "mysqladmin ping -h 127.0.0.1 -uroot -p$${MYSQL_ROOT_PASSWORD} --silent"]
       interval: 5s
       timeout: 5s
       retries: 20
+    restart: unless-stopped
+
+  backend:
+    build:
+      context: ./backend
+    container_name: personal-resume-backend
+    environment:
+      DB_URL: jdbc:mysql://mysql:3306/personal_resume?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true&useSSL=false
+      DB_USERNAME: root
+      DB_PASSWORD: ${MYSQL_ROOT_PASSWORD:-1006}
+      DB_DDL_AUTO: none
+      APP_JWT_SECRET: ${APP_JWT_SECRET:-this-is-a-local-dev-secret-at-least-32-characters}
+      APP_CORS_ALLOWED_ORIGINS: ${APP_CORS_ALLOWED_ORIGINS:-http://localhost,http://127.0.0.1,http://localhost:80,http://127.0.0.1:80,http://localhost:8080,http://127.0.0.1:8080}
+    ports:
+      - "8080:8080"
+    depends_on:
+      mysql:
+        condition: service_healthy
+    restart: unless-stopped
+
+  frontend:
+    build:
+      context: ./frontend
+    container_name: personal-resume-frontend
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
     restart: unless-stopped
 
 volumes:

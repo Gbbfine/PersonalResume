@@ -11,7 +11,7 @@ INSERT INTO profile (
 ) VALUES (
     'Your Name',
     'Java Backend Developer',
-    'https://raw.githubusercontent.com/Gbbfine/PersonalFileHosting/main/avatar.png',
+    'https://raw.githubusercontent.com/Gbbfine/PersonalFileHosting/main/avatar.webp',
     'China',
     'Write a concise self introduction here.',
     'https://raw.githubusercontent.com/Gbbfine/PersonalFileHosting/main/%E8%91%9B%E5%AE%9D%E6%96%8C%20-%20%E7%AE%80%E5%8E%860903.pdf',

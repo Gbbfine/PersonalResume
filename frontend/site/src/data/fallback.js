@@ -2,7 +2,7 @@
   profile: {
     fullName: "YOUR NAME",
     title: "Full-Stack Developer",
-    avatarUrl: "https://raw.githubusercontent.com/Gbbfine/PersonalFileHosting/main/avatar.png",
+    avatarUrl: "https://raw.githubusercontent.com/Gbbfine/PersonalFileHosting/main/avatar.webp",
     location: "Shanghai, China",
     bio: "聚焦高性能 Web 应用、工程化与产品化交付，擅长把复杂需求拆解为稳定可迭代的技术方案。",
     resumePdfUrl: "https://raw.githubusercontent.com/Gbbfine/PersonalFileHosting/main/%E8%91%9B%E5%AE%9D%E6%96%8C%20-%20%E7%AE%80%E5%8E%860903.pdf"

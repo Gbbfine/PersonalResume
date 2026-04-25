@@ -8,7 +8,9 @@ function normalizeBase(url) {
 }
 
 function getDefaultApiBase() {
-  return window.location.origin;
+  const { hostname, origin, port } = window.location;
+  const isLocalStaticServer = ["localhost", "127.0.0.1"].includes(hostname) && !["80", "8080"].includes(port);
+  return isLocalStaticServer ? "http://localhost:8080" : origin;
 }
 
 function getStoredApiBase() {

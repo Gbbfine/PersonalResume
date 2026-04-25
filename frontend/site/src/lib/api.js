@@ -59,7 +59,6 @@ export const publicApi = {
   getSkills: () => request("/api/public/skills"),
   getProjects: () => request("/api/public/projects"),
   getWorkExperiences: () => request("/api/public/work-experiences"),
-  getEducations: () => request("/api/public/educations"),
   getHonors: () => request("/api/public/honors"),
   getContacts: () => request("/api/public/contacts")
 };

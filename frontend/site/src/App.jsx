@@ -4,6 +4,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { motion } from "framer-motion";
 import { LayoutGrid, Sparkles } from "lucide-react";
 import { fallbackResume } from "./data/fallback";
+import { staticEducations } from "./data/static-educations";
 import { publicApi } from "./lib/api";
 import { toTimelineItems } from "./lib/format";
 import { usePerfGuard } from "./hooks/use-perf-guard";
@@ -76,7 +77,6 @@ function App() {
         skills: publicApi.getSkills,
         projects: publicApi.getProjects,
         workExperiences: publicApi.getWorkExperiences,
-        educations: publicApi.getEducations,
         honors: publicApi.getHonors,
         contacts: publicApi.getContacts
       };
@@ -174,8 +174,8 @@ function App() {
   );
 
   const heroEducations = useMemo(
-    () => data.educations || [],
-    [data.educations]
+    () => staticEducations,
+    []
   );
 
   return (

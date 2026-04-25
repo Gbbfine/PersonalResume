@@ -49,16 +49,7 @@
       endDate: null
     }
   ],
-  educations: [
-    {
-      school: "Example University",
-      degree: "Bachelor",
-      major: "Computer Science",
-      gpa: "3.8/4.0",
-      startDate: "2020-09-01",
-      endDate: "2024-06-30"
-    }
-  ],
+  educations: [],
   honors: [
     {
       title: "Outstanding Developer Award",

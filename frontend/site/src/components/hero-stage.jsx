@@ -69,6 +69,10 @@ function normalizeGithubAssetUrl(url) {
     .replace("/blob/", "/");
 }
 
+function normalizeResumeUrl(url) {
+  return normalizeGithubAssetUrl(String(url || "").trim());
+}
+
 function schoolLogoUrl(education) {
   const custom = normalizeGithubAssetUrl(String(education?.logoUrl || "").trim());
   if (custom) {
@@ -85,7 +89,7 @@ function schoolLogoUrl(education) {
 
 export function HeroStage({ profile, lines, educations }) {
   const words = splitName(profile?.fullName);
-  const resumeUrl = String(profile?.resumePdfUrl || "").trim();
+  const resumeUrl = normalizeResumeUrl(profile?.resumePdfUrl);
   const heroEducations = pickEducations(educations);
   const remoteAvatarUrl = String(profile?.avatarUrl || "").trim();
   const [avatarUrl, setAvatarUrl] = useState(LOCAL_AVATAR_URL);

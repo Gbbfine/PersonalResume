@@ -8,8 +8,7 @@ function normalizeBase(url) {
 }
 
 function getDefaultApiBase() {
-  const host = window.location.hostname || "localhost";
-  return `http://${host}:8080`;
+  return window.location.origin;
 }
 
 function getStoredApiBase() {
